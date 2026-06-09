@@ -178,8 +178,9 @@ This job is configured to install Node dependencies, start the application, run 
     ```text
     tests/cypress/cypress/screenshots/**, tests/cypress/cypress/videos/**
     ```
-    *(This archives screenshots/videos of any failing test runs so you can debug directly from Jenkins).*
-4.  Click **Save**.
+4.  Click the **Advanced...** button directly below the file pattern input.
+5.  Check the box for **Allow empty archive**. *(This is critical because when all tests pass, no failure screenshots/videos are generated, and this option prevents Jenkins from failing the build).*
+6.  Click **Save**.
 
 ---
 
