@@ -1,0 +1,8 @@
+{
+  "name": "movie-store-selenium-tests",
+  "version": "1.0.0",
+  "description": "Selenium WebDriver integration tests for Movie Store",
+  "scripts": {
+    "test": "mvn test -f java-maven/pom.xml"
+  }
+}

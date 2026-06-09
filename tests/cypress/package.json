@@ -1,0 +1,13 @@
+{
+  "name": "movie-store-cypress-tests",
+  "version": "1.0.0",
+  "description": "Cypress E2E tests for Movie Store",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run:bypass": "/Users/chandan_dhumale/Library/Caches/Cypress/13.17.0/Cypress.app/Contents/MacOS/Cypress --no-sandbox -- --run-project . --cwd . --userNodePath $(which node) --userNodeVersion $(node -v)"
+  },
+  "dependencies": {
+    "cypress": "^13.17.0"
+  }
+}
