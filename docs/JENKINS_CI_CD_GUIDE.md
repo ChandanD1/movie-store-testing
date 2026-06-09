@@ -138,8 +138,23 @@ This job is configured to install Node dependencies, start the application, run 
     nohup npm run dev > frontend.log 2>&1 &
     
     # Wait for services to be healthy
-    timeout 30 sh -c "until curl -s http://localhost:8080/api/movies >/dev/null; do sleep 2; done"
-    timeout 30 sh -c "until curl -s http://localhost:5173 >/dev/null; do sleep 2; done"
+    echo "Waiting for backend..."
+    for i in {1..15}; do
+        if curl -s http://localhost:8080/api/movies >/dev/null; then
+            echo "Backend is up!"
+            break
+        fi
+        sleep 2
+    done
+    
+    echo "Waiting for frontend..."
+    for i in {1..15}; do
+        if curl -s http://localhost:5173 >/dev/null; then
+            echo "Frontend is up!"
+            break
+        fi
+        sleep 2
+    done
     
     echo "=== Step 3: Executing Cypress E2E Tests ==="
     cd ../tests/cypress

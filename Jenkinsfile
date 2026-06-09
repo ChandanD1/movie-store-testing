@@ -64,9 +64,26 @@ pipeline {
                 }
 
                 echo 'Waiting for services to become healthy...'
-                // Health checks with timeouts
-                sh 'timeout 30 sh -c "until curl -s http://localhost:8080/api/movies >/dev/null; do sleep 2; done"'
-                sh 'timeout 30 sh -c "until curl -s http://localhost:5173 >/dev/null; do sleep 2; done"'
+                // Health checks with portable loops
+                sh '''
+                echo "Waiting for backend..."
+                for i in {1..15}; do
+                    if curl -s http://localhost:8080/api/movies >/dev/null; then
+                        echo "Backend is up!"
+                        break
+                    fi
+                    sleep 2
+                done
+                
+                echo "Waiting for frontend..."
+                for i in {1..15}; do
+                    if curl -s http://localhost:5173 >/dev/null; then
+                        echo "Frontend is up!"
+                        break
+                    fi
+                    sleep 2
+                done
+                '''
                 echo 'Application servers are up and healthy!'
             }
         }
