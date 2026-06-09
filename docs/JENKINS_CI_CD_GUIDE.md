@@ -41,7 +41,7 @@ To check the status:
 Ensure the following plugins are installed and active in your Jenkins dashboard (`Manage Jenkins` > `Plugins` > `Installed plugins`):
 *   **Git Plugin** (enables SCM checkouts)
 *   **Maven Integration Plugin** (adds native support for Freestyle Maven configurations)
-*   **JUnit Plugin** (required to parse TestNG XML report files)
+*   **TestNG Results Plugin** (required to parse TestNG XML report files)
 
 ---
 
@@ -86,12 +86,12 @@ Configure how you want code changes to trigger the tests:
 
 ### 4.5 Post-build Actions
 1.  Go to the **Post-build Actions** section.
-2.  Click **Add post-build action** and choose **Publish JUnit test result report**.
-3.  Set **Test report XMLs** to:
+2.  Click **Add post-build action** and choose **Publish TestNG Results**.
+3.  Set **TestNG XML report pattern** to:
     ```text
-    tests/selenium/java-maven/target/surefire-reports/**/*.xml
+    tests/selenium/java-maven/target/surefire-reports/testng-results.xml
     ```
-    *(This parses the TestNG XML reports and generates clean passing charts in your Jenkins dashboard).*
+    *(This parses the TestNG XML reports and generates native TestNG results graphs in your Jenkins dashboard).*
 4.  Click **Save**.
 
 ---
